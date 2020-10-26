@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3>To Do List</h3>
+      <form>
+        <input type="text" />
+        <input type="submit" />
+      </form>
+      <ul class="output"></ul>
+    </div>
+    <script>
+      const form = document.querySelector("form");
+      const list = document.querySelector(".output");
+
+      form.addEventListener("submit", addItem);
+      list.addEventListener("click", removeItem);
+
+      function addItem(e) {
+        e.preventDefault();
+        // Add Item
+        const inputItem = document.querySelector("input[type=text]");
+        let inputValue = inputItem.value;
+        const li = document.createElement("li");
+        li.className = "list-group";
+        const newItem = document.createTextNode(inputValue);
+        li.appendChild(newItem);
+        list.appendChild(li);
+        //delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete";
+        const buttonText = document.createTextNode("X");
+        deleteButton.appendChild(buttonText);
+        li.appendChild(deleteButton);
+        inputValue = "add";
+      }
+      function removeItem(e) {
+        if (e.target.classList.contains("delete")) {
+          const li = e.target.parentElement;
+          list.removeChild(li);
+        }
+      }
+    </script>
+  </body>
+</html>

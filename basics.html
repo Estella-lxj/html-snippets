@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 id="header-title">To Do List</h2>
+    <div id="container">
+      <form>
+        To Do List
+        <input type="text" />
+        <input type="submit" value="submit" />
+      </form>
+      <div class="items">
+        <ul>
+          <li class="list-group-item">Apple</li>
+          <li class="list-group-item">Pear</li>
+          <li class="list-group-item">Banana</li>
+        </ul>
+      </div>
+      <button>Click Me</button>
+      <div class="output"></div>
+    </div>
+    <script>
+      //select
+      //   console.dir(document);
+      //   console.log(document.forms);
+      const headerTitle = document.getElementById("header-title");
+      //   headerTitle.textContent = "hello";
+      //   headerTitle.innerText = "there";
+      //   headerTitle.innerHTML = "<h3>hi</h3>";
+      //   headerTitle.style.borderBottom = "solid 3px #000";
+
+      //   for (let item of items) {
+      //     item.style.backgroundColor = "blue";
+      //   }
+      const header = document.querySelector("#header-title");
+      header.style.border = "solid 3px green";
+
+      const inputs = document.querySelector("input");
+      inputs.value = "hello";
+
+      const itemsOdd = document.querySelectorAll("li:nth-child(odd)");
+      for (let itemOdd of itemsOdd) {
+        itemOdd.style.border = "solid 4px pink";
+      }
+      //Traversing the DOM
+      const itemList = document.querySelector(".items");
+      itemList.parentNode.style.backgroundColor = "yellow";
+      // Create element
+      const newDiv = document.createElement("div");
+      newDiv.className = "new";
+      newDiv.setAttribute("title", "hititle");
+      const newDivText = document.createTextNode("hello world");
+      newDiv.appendChild(newDivText);
+      // createElement() and createTextNode()
+      // insertBefore
+      const button = document.querySelector("button");
+      button.addEventListener("click", buttonClick);
+      output = document.querySelector(".output");
+      console.log(output);
+      let count = 0;
+      function buttonClick(e) {
+        itemList.innerHTML += "<li>" + count + "</li>";
+        count++;
+      }
+    </script>
+  </body>
+</html>
