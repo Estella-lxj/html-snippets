@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="tabs">
+        <li data-tab-target="#home" class="active tab">Home</li>
+        <li data-tab-target="#pricing" class="tab">Pricing</li>
+        <li data-tab-target="#about" class="tab">About</li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="home" data-tab-content class="active">
+          <h1>Home</h1>
+          <p>This is the home</p>
+        </div>
+        <div id="pricing" data-tab-content>
+          <h1>Pricing</h1>
+          <p>Some information on pricing</p>
+        </div>
+        <div id="about" data-tab-content>
+          <h1>About</h1>
+          <p>Let me tell you about me</p>
+        </div>
+      </div>
+      </div>
+</body>
+<style>
+
+    [data-tab-content] {
+    display: none;
+    }
+
+    [data-tab-content].active {
+    display: block;
+    }
+
+    body {
+    padding: 0;
+    margin: 0;
+    }
+
+    .tabs {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
+    }
+
+    .tab {
+    cursor: pointer;
+    padding: 10px;
+    }
+
+    .tab.active {
+    background-color: #CCC;
+    }
+
+    .tab:hover {
+    background-color: #AAA;
+    }
+
+    .tab-content {
+    margin-left: 20px;
+    margin-right: 20px;
+    }
+</style>
+<script>
+    const tabs = document.querySelectorAll('[data-tab-target]')
+    const tabContents = document.querySelectorAll('[data-tab-content]')
+
+    tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.tabTarget)
+        tabContents.forEach(tabContent => {
+        tabContent.classList.remove('active')
+        })
+        tabs.forEach(tab => {
+        tab.classList.remove('active')
+        })
+        tab.classList.add('active')
+        target.classList.add('active')
+    })
+    })
+</script>
+</html>

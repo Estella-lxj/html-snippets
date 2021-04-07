@@ -59,10 +59,21 @@
       .content-table th,
       .content-table td {
         padding: 12px 15px;
+        position: relative;
       }
 
       .content-table tbody tr {
         border-bottom: 1px solid #dddddd;
+      }
+
+      .content-table tbody td:nth-child(3):after {
+        content: "";
+        border-bottom: dotted 1px black;
+        height: 1px;
+        width: 45px;
+        position: absolute;
+        right: -12px;
+        bottom: 12px;
       }
 
       .content-table tbody tr:nth-of-type(even) {
