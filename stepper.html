@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <ul>
+        <li class="step">
+          <div>1</div>
+          <p>Step 1</p>
+        </li>
+        <li class="step">
+          <div>2</div>
+          <p>Step 2</p>
+        </li>
+        <li class="step">
+          <div>3</div>
+          <p>Step 3</p>
+        </li>
+      </ul>
+      <div class="btn-group">
+        <button class="prevBtn" disabled>Prev</button>
+        <button class="nextBtn">Next</button>
+      </div>
+    </div>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        height: 150px;
+        width: 400px;
+        position: relative;
+        border: solid 1px black;
+      }
+      ul {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        position: relative;
+      }
+      li div {
+        height: 50px;
+        line-height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: pink;
+        text-align: center;
+      }
+      li.active div {
+        background-color: tomato;
+      }
+      li p {
+        text-align: center;
+      }
+      li::after {
+        width: 150px;
+        height: 2px;
+        background-color: pink;
+        position: absolute;
+        content: "";
+        top: 25px;
+        right: 0px;
+        z-index: -1;
+      }
+      li.active + li::after {
+        background-color: tomato;
+      }
+      li:first-of-type:after {
+        content: none;
+      }
+      .btn-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn-group button {
+        background: none;
+        border: solid 1px pink;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      const prev = document.querySelector(".prevBtn");
+      const next = document.querySelector(".nextBtn");
+      const list = [...document.querySelectorAll(".step")];
+
+      let curStep = 1;
+
+      next.addEventListener("click", () => {
+        list[curStep - 1].classList.add("active");
+        curStep++;
+        prev.disabled = false;
+        if (curStep > 3) {
+          next.disabled = true;
+        }
+      });
+
+      prev.addEventListener("click", () => {
+        list[curStep - 2].classList.remove("active");
+        curStep--;
+        next.disabled = false;
+        console.log(curStep);
+        if (curStep === 1) {
+          prev.disabled = true;
+        }
+      });
+    </script>
+  </body>
+</html>

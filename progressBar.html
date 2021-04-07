@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="progress" data-load="70"></div>
+      <div class="text">0%</div>
+    </div>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        height: 40px;
+        width: 400px;
+        background-color: grey;
+        border-radius: 40px;
+        overflow: hidden;
+        position: relative;
+      }
+      .progress {
+        background: linear-gradient(to left, #f2709c, #ff9472);
+        height: 100%;
+        width: 0%;
+        min-width: 0%;
+        max-width: 100%;
+        transition: all 0.1s;
+      }
+      .text {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0px;
+        color: white;
+      }
+    </style>
+    <script>
+      const progress = document.querySelector(".progress");
+      const text = document.querySelector(".text");
+      const update = (value) => {
+        value = Math.round(value);
+        progress.style.width = `${value}%`;
+        text.textContent = `${value}%`;
+      };
+      let p = 0;
+      const interval = setInterval(() => {
+        p += 10;
+        update(p);
+        if (p === 100) clearInterval(interval);
+      }, 1000);
+    </script>
+  </body>
+</html>
