@@ -49,11 +49,12 @@
       }
       li div {
         height: 50px;
-        line-height: 50px;
         width: 50px;
         border-radius: 50%;
         background-color: pink;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       li.active div {
         background-color: tomato;
@@ -68,21 +69,20 @@
         position: absolute;
         content: "";
         top: 25px;
-        right: 0px;
+        left: 0px;
         z-index: -1;
       }
-      li.active + li::after {
-        background-color: tomato;
-      }
-      li:first-of-type:after {
+      li:last-child:after {
         content: none;
+      }
+      li.active::after {
+        background-color: tomato;
       }
       .btn-group {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-
       .btn-group button {
         background: none;
         border: solid 1px pink;
